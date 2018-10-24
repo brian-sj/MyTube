@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.brian.mytube.MainActivity"
+    tools:context="com.goodmorningvoca.std.MainActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:showIn="@layout/activity_main">
 
@@ -18,6 +18,4 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         />
-
-
 </android.support.constraint.ConstraintLayout>

@@ -1,20 +1,20 @@
-package com.brian.mytube.adapter
+package com.goodmorningvoca.std.adapter
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.brian.mytube.model.Book
+import com.goodmorningvoca.std.model.Book
 
 /**
  * Created by briankang on 2018. 3. 15..
  */
 class BookDBHandler(ctx : Context , name : String? , factory:SQLiteDatabase.CursorFactory?, version :Int )
-    : SQLiteOpenHelper(ctx , DATABASE_NAME , factory, DATABASE_VERSION)
+    : SQLiteOpenHelper(ctx , DATABASE_NAME, factory, DATABASE_VERSION)
 {
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_PRODUCTS_TABLE = ( " CREATE TABLE " + TABLE_PRODUCTS + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY , " +
-                                     COLUMN_PRODUCTNAME + " TEXT , " + COLUMN_QUANTITY + " INTEGER )" )
+                COLUMN_PRODUCTNAME + " TEXT , " + COLUMN_QUANTITY + " INTEGER )" )
 
                 db.execSQL( CREATE_PRODUCTS_TABLE )
     }
@@ -27,12 +27,12 @@ class BookDBHandler(ctx : Context , name : String? , factory:SQLiteDatabase.Curs
 
     fun addProduct ( prod : Book){
         val values = ContentValues()
-        values .put(COLUMN_PRODUCTNAME , prod.bookName)
-        values .put(COLUMN_QUANTITY , prod.cnt )
+        values .put(COLUMN_PRODUCTNAME, prod.bookName)
+        values .put(COLUMN_QUANTITY, prod.cnt )
 
         val db = this.writableDatabase
 
-        db.insert(TABLE_PRODUCTS , null , values)
+        db.insert(TABLE_PRODUCTS, null , values)
         db.close()
     }
 
@@ -48,7 +48,7 @@ class BookDBHandler(ctx : Context , name : String? , factory:SQLiteDatabase.Curs
             val id = Integer.parseInt( cursor.getString(0))
             val name = cursor.getString(1)
             val quantity = Integer.parseInt( cursor.getString(2))
-            prod = Book(id , name , quantity)
+            prod = Book(id, name, quantity)
             cursor.close()
         }
 

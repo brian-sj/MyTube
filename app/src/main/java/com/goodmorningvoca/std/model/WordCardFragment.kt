@@ -1,4 +1,4 @@
-package com.brian.mytube.model
+package com.goodmorningvoca.std.model
 
 import android.support.v4.app.Fragment
 

@@ -13,11 +13,25 @@
     <string name="bottom_menu_4">더보기</string>
 
 
-
     <string name="title_activity_nmain">NMainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_course_lesson">CourseLessonActivity</string>
+
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_id">ID</string>
+    <string name="prompt_password">비밀번호</string>
+    <string name="action_sign_in">로그인 및 등록</string>
+    <string name="action_sign_in_short">로그인</string>
+    <string name="error_invalid_email">이메일 정보가 정확하지 않습니다.</string>
+    <string name="error_invalid_password">비밀 번호가 너무 짧습니다. (4자리 이상)</string>
+    <string name="error_incorrect_password">비밀 번호가 틀립니다.</string>
+    <string name="error_field_required">해당 정보를 입력해 주세요</string>
+    <string name="permission_rationale">"id 자동 입력을 위해서는 권한이 필요합니다."</string>
+    <string name="main_fragment_title">테스트</string>
+
+
 </resources>

@@ -1,6 +1,5 @@
-package com.brian.mytube
+package com.goodmorningvoca.std
 
-import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +7,7 @@ import android.os.Environment
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.brian.mytube.adapter.VideoDataAdapter
-import com.brian.mytube.model.HomeFeed
-import com.google.gson.GsonBuilder
+import com.brian.mytube.R
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_nmain.*
@@ -23,16 +20,19 @@ class NMainActivity : AppCompatActivity() {
 
     private lateinit  var title_name  : String
 
+
+
     companion object {
-        private val INTENT_ID = "OPTION"
-        private val SERVER_URL = ""
-        public val TYPE_PROFILE = "PROFILE"
-        public val TYPE_SETTING = "SETTING"
+        const val INTENT_ID = "OPTION"
+        const val SERVER_URL = "http://d.goodmorningvoca.com/api/upload_profile"
+
+        val TYPE_PROFILE = "PROFILE"
+        val TYPE_SETTING = "SETTING"
 
         fun newIntent( context : Context , type : String ) : Intent {
-            val intent = Intent(context , NMainActivity::class.java )
+           val intent = Intent ( context , NMainActivity::class.java )
             //title_name  = type
-            intent.putExtra(INTENT_ID , type  )
+            intent.putExtra(INTENT_ID, type  )
             return intent
         }
     }
@@ -106,7 +106,7 @@ class NMainActivity : AppCompatActivity() {
 
         //val request = Request.Builder().url(SERVER_URL).build()
         val request = Request.Builder()
-                .url (SERVER_URL )
+                .url (SERVER_URL)
                 .post( requrestBody  )
                 .build()
 

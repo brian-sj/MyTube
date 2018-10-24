@@ -1,7 +1,6 @@
-package com.brian.mytube.adapter
+package com.goodmorningvoca.std.adapter
 
 import android.content.Intent
-import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,38 +8,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import com.brian.mytube.DetailActivity
 import com.brian.mytube.R
-import com.brian.mytube.WordCardActivity
-import com.brian.mytube.model.HomeFeed
-import com.brian.mytube.model.Video
+import com.goodmorningvoca.std.WordCardActivity
+import com.goodmorningvoca.std.model.Data
+import com.goodmorningvoca.std.model.WordFeed
+import com.goodmorningvoca.std.model.Word
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_video.view.*
 
 /**
  * Created by briankang on 2018. 3. 15..
  */
-class VideoDataAdapter(var homeFeed : HomeFeed) : RecyclerView.Adapter<VideoDataAdapter.VideoViewHolder> (){
+class WordDataAdapter(var homeFeed : WordFeed) : RecyclerView.Adapter<WordDataAdapter.VideoViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val v = LayoutInflater.from(parent.context).inflate( R.layout.item_video , parent , false )
         return VideoViewHolder(v)
     }
     override fun getItemCount(): Int {
-        return homeFeed.videos.count()
+        return homeFeed.datas.count()
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
+        val data = homeFeed.datas.get(position)
+        holder.word = data
+        holder.bindItems( data  )
 
-        val video = homeFeed.videos.get(position)
-        holder.video = video
-        holder.bindItems( video )
-
-        Picasso.with(holder.iview.context).load( video.imageUrl).into( holder.imageViewTitle)
-        Picasso.with(holder.iview.context).load( video.channel.profileImageUrl).into( holder.imageViewProfile)
+        Picasso.with(holder.iview.context).load( Data.IMAGE_PATH + data.filename2).into( holder.imageViewTitle)
+        Picasso.with(holder.iview.context).load( Data.IMAGE_PATH + data.filename2).into( holder.imageViewProfile)
 
     }
-    class VideoViewHolder(itemView : View  , var video : Video? =null  ) : RecyclerView.ViewHolder(itemView) {
+    class VideoViewHolder(itemView : View  , var word : Word? =null  ) : RecyclerView.ViewHolder(itemView) {
 
         companion object {
             val VIDEO_TITLE_KEY ="VIDEO_TITLE"
@@ -61,27 +57,21 @@ class VideoDataAdapter(var homeFeed : HomeFeed) : RecyclerView.Adapter<VideoData
 
             //textViewDesc.text = item.numberOfViews.toString()
             iview.setOnClickListener( View.OnClickListener {
-
-
-
                 //val intent = Intent(iview.context , DetailActivity::class.java      )
                 /// WordCard Activity 로 날라간다
                 val intent = Intent(iview.context , WordCardActivity::class.java               )
-                intent.putExtra(VIDEO_TITLE_KEY, video?.name )
-                intent.putExtra(VIDEO_ID_KEY , video?.id )
-
-                Log.d("bind...","###Hellow... ${video?.name}" )
+                intent.putExtra(VIDEO_TITLE_KEY, word?.word )
+                intent.putExtra(VIDEO_ID_KEY, word?.id_no )
+                Log.d("bind...","###Hellow... ${word?.word}" )
                 //Toast.makeText( iview.context , "name ${item.name}" , Toast.LENGTH_LONG).show()
-
-
                 iview.context.startActivity(intent )
             })
 
 
         }
-        fun bindItems( item : Video){
-            textViewTitle.text = item.name
-            textViewSub.text = item.channel.name +" 20K Views \n4 days ago"
+        fun bindItems( item : Word){
+            textViewTitle.text = item.word
+            textViewSub.text = item.meaning
         }
     }
 }

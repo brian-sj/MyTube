@@ -1,9 +1,6 @@
-package com.brian.mytube
+package com.goodmorningvoca.std
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,18 +9,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.brian.mytube.adapter.BookDBHandler
-import com.brian.mytube.adapter.VideoDataAdapter
-import com.brian.mytube.model.Book
-import com.brian.mytube.model.HomeFeed
-import com.brian.mytube.model.User
-import com.brian.mytube.model.Video
+import com.goodmorningvoca.std.adapter.VideoDataAdapter
+import com.goodmorningvoca.std.model.HomeFeed
+import com.brian.mytube.R
+import com.goodmorningvoca.std.adapter.WordDataAdapter
+import com.goodmorningvoca.std.model.GlobalVariable
+import com.goodmorningvoca.std.model.WordFeed
+
+
 import com.google.gson.GsonBuilder
 
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import java.io.IOException
-import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,8 +36,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        //mContext = applicationContext()
 
+
+        //mContext = applicationContext()
 
         ////##1 get ui
         val recyclerView = findViewById(R.id.rvVideos) as RecyclerView
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                val intent = NMainActivity.newIntent( this , NMainActivity.TYPE_SETTING )
+                val intent = NMainActivity.newIntent(this, NMainActivity.TYPE_SETTING)
                 startActivity( intent)
                 true
             }
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
                 true
             }
-            R.id.action_logout->{
+            R.id.action_logout ->{
                 true
             }
 
@@ -102,26 +101,28 @@ class MainActivity : AppCompatActivity() {
     fun fetchJsonData( recyclerView : RecyclerView ){
 
         Log.i("","Attempt to get Fetch JSON")
-        val url : String ="https://api.letsbuildthatapp.com/youtube/home_feed"
+        //val url : String ="https://api.letsbuildthatapp.com/youtube/home_feed"
+        val url : String ="http://d.goodmorningvoca.com/api/study_by_level/3"
 
         val client = OkHttpClient()
-        val request = Request.Builder().url(url).build()
+        val request = Request.Builder()
+                .addHeader("Authorization","Bearer "+ GlobalVariable.token)
+                .url(url).build()
 
         //client.newCall(request).execute()
         client.newCall(request).enqueue(object: Callback{
             override fun onFailure(call: Call?, e: IOException?) {
                 Log.e("","Error ::: ${e?.message}" )
             }
-
             override fun onResponse(call: Call?, response: Response?) {
                 val body = response?.body()?.string()
                 val gson = GsonBuilder().create()
-                val homeFeed = gson.fromJson(body , HomeFeed::class.java)
-
+                //val homeFeed = gson.fromJson(body , HomeFeed::class.java)
+                val homeFeed = gson.fromJson(body , WordFeed::class.java)
                 runOnUiThread {
-                    recyclerView.adapter =  VideoDataAdapter(homeFeed)
+                    //recyclerView.adapter = VideoDataAdapter(homeFeed)
+                    recyclerView.adapter = WordDataAdapter(homeFeed)
                 }
-
                 Log.d("",body)
             }
 
