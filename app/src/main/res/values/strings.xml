@@ -7,10 +7,10 @@
     <string name="action_profile">내정보</string>
     <string name="action_notices">공지사항</string>
 
-    <string name="bottom_menu_1">학습</string>
-    <string name="bottom_menu_2">시험</string>
+    <string name="bottom_menu_1">일정</string>
+    <string name="bottom_menu_2">진도</string>
     <string name="bottom_menu_3">성적</string>
-    <string name="bottom_menu_4">더보기</string>
+    <string name="bottom_menu_4">단어장</string>
 
 
     <string name="title_activity_nmain">NMainActivity</string>
@@ -32,6 +32,8 @@
     <string name="error_field_required">해당 정보를 입력해 주세요</string>
     <string name="permission_rationale">"id 자동 입력을 위해서는 권한이 필요합니다."</string>
     <string name="main_fragment_title">테스트</string>
+    <string name="title_activity_level">LevelActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 
 </resources>

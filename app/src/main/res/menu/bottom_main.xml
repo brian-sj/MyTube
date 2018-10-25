@@ -14,4 +14,9 @@
         android:id="@+id/action_item3"
         android:icon="@drawable/ic_more_horiz_black_24dp"
         android:title="@string/bottom_menu_3"/>
+
+    <item
+        android:id="@+id/action_item4"
+        android:icon="@drawable/ic_more_horiz_black_24dp"
+        android:title="@string/bottom_menu_4"/>
 </menu>
