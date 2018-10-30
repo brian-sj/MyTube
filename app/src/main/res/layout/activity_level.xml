@@ -1,46 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.goodmorningvoca.std.LevelActivity">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    tools:context=".LevelActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="초등용"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/ctg_group"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/app_name">
+            android:layout_height="wrap_content"
+            app:tbgCheckedButton="@+id/choice_a"
+            app:tbgChildSpacing="20dp"
+            app:tbgRowSpacing="15dp"
 
-        </android.support.v7.widget.Toolbar>
+            >
 
-    </android.support.design.widget.AppBarLayout>
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/choice_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_ele"
+                android:textSize="24sp" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/choice_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_mid"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/choice_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_high"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/choice_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_sat"
+                android:textSize="24sp" />
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/part_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tbgCheckedButton="@+id/btn_part1"
+            app:tbgChildSpacing="auto"
+            app:tbgFlow="true"
+            app:tbgRowSpacing="8dp">
+
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART1"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART2"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART3"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART4"
+                android:textSize="24sp" />
+
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART5"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART6"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART7"
+                android:textSize="24sp" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/btn_part8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PART8"
+                android:textSize="24sp" />
+
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/levelSpinner"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        android:background="@layout/spinner_background"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/levelSpinner">
 
-</android.support.design.widget.CoordinatorLayout>
+
+        <RadioGroup
+            android:id="@+id/radio_study_or_test"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/action_study" />
+
+            <RadioButton
+                android:id="@+id/btn_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/action_test" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+        <Button
+            android:id="@+id/btn_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_go" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

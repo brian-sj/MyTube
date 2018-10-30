@@ -12,13 +12,15 @@ import com.goodmorningvoca.std.app.model.Level
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 import kotlinx.android.synthetic.main.activity_level.*
 
+
+
 class LevelActivity : AppCompatActivity() {
 
 
     private var ctg : String = ""
     private var part : Int = 0
-    private var seq  : Int = 0
-    private var level : Int = 0
+    private var seq  : Int = 1
+    private var level : Int = 1
     private var isStudy : Boolean = true
 
 
@@ -145,11 +147,11 @@ class LevelActivity : AppCompatActivity() {
                 }
         )
 
-
-
-
-    }
-    private fun go(){
+        btn_go.setOnClickListener {
+            intent = Intent( this ,  StudyActivity::class.java )
+            intent.putExtra(StudyActivity.Level_ID , level )
+            startActivity(intent )
+        }
 
 
     }

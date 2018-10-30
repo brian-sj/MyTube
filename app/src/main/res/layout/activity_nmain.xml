@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="125dp"
-    tools:context="com.goodmorningvoca.std.NMainActivity">
+    tools:context=".NMainActivity">
 
     <TextView
         android:id="@+id/txtName"

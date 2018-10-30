@@ -2,20 +2,17 @@ package com.goodmorningvoca.std.app
 
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
-import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 
 import android.util.Log
-import com.goodmorningvoca.std.MainActivity
-import com.goodmorningvoca.std.model.GlobalVariable
+import com.goodmorningvoca.std.app.model.GlobalVariable
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.brian.mytube.R
+import com.goodmorningvoca.std.app.R
 
 class MyFirebaseMessagingService  : FirebaseMessagingService() {
 
