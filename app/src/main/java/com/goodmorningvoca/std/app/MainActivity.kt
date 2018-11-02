@@ -10,9 +10,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.goodmorningvoca.std.app.adapter.MainAdapter
 import com.goodmorningvoca.std.app.adapter.WordDataAdapter
+import com.goodmorningvoca.std.app.model.Data
 import com.goodmorningvoca.std.app.model.GlobalVariable
+import com.goodmorningvoca.std.app.model.HomeFeed
 import com.goodmorningvoca.std.app.model.WordFeed
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
 
 
 import com.google.gson.GsonBuilder
@@ -22,9 +28,10 @@ import okhttp3.*
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
-
+        var token : String?= null
         var _number : Int = 2
         var isStudy : Boolean = false
+        private val LOG_TAG =   "MAIN_ACTIViTY"
     //val mContext : Context? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +40,18 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(
+                this@MainActivity , OnSuccessListener<InstanceIdResult> {
+            instanceIdResult ->
+            val device_id = instanceIdResult.token
+            if( !device_id.isNullOrEmpty()  &&  !GlobalVariable.user!!.device_id.equals(device_id)){
+                registerDeviceId( device_id)
+            }else{
+                Log.e(LOG_TAG , "같으면 등록 안함... ")
+            }
+        }
+
+        )
 
         //mContext = applicationContext()
 
@@ -56,10 +75,15 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_item2 ->{
-
-                    val intent = Intent(this , LevelActivity ::class.java )
+                    val intent = Intent(this , StudyActivity::class.java )
                     startActivity(intent)
-
+                    //isStudy = false
+                    //Toast.makeText( this , "Exam"  , Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.action_item4 ->{
+                    val intent = Intent(this , WordCardActivity::class.java )
+                    startActivity(intent)
                     //isStudy = false
                     //Toast.makeText( this , "Exam"  , Toast.LENGTH_SHORT).show()
                     true
@@ -98,11 +122,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    //// TOKEN 을 서버에 등록한다...
+    fun registerDeviceId( device_id: String ){
+        val url = Data.PATH_DEVICE_ADD +  device_id
+        token = GlobalVariable.token
+        if( GlobalVariable.token.isNullOrEmpty() ){
+            return
+        }
+        val request = Request.Builder()
+                .addHeader("Authorization","Bearer "+ GlobalVariable.token)
+                .url(url).build()
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object:Callback{
+
+            override fun onFailure(call: Call, e: IOException) {
+                //
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                //
+            }
+        })
+
+
+
+    }
+
     fun fetchJsonData( recyclerView : RecyclerView ){
 
         Log.i("","Attempt to get Fetch JSON")
         //val url : String ="https://api.letsbuildthatapp.com/youtube/home_feed"
-        val url : String ="http://d.goodmorningvoca.com/api/study_by_level/3"
+        //val url : String ="http://d.goodmorningvoca.com/api/study_by_level/3"
+        val url : String = Data.PATH_SCORE
 
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -117,11 +170,12 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call?, response: Response?) {
                 val body = response?.body()?.string()
                 val gson = GsonBuilder().create()
-                //val homeFeed = gson.fromJson(body , HomeFeed::class.java)
-                val homeFeed = gson.fromJson(body , WordFeed::class.java)
+                val homeFeed = gson.fromJson(body , HomeFeed::class.java)
+                //val homeFeed = gson.fromJson(body , WordFeed::class.java)
                 runOnUiThread {
                     //recyclerView.adapter = VideoDataAdapter(homeFeed)
-                    recyclerView.adapter = WordDataAdapter(homeFeed)
+                    //recyclerView.adapter = WordDataAdapter(homeFeed)
+                    recyclerView.adapter = MainAdapter(homeFeed)
                 }
                 Log.d("",body)
             }

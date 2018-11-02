@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "171234577934",
+    "firebase_url": "https://gmvoca-6b568.firebaseio.com",
+    "project_id": "gmvoca-6b568",
+    "storage_bucket": "gmvoca-6b568.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171234577934:android:596225af9292e9e7",
+        "android_client_info": {
+          "package_name": "com.goodmorningvoca.std.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171234577934-8hccs601ivkcptf64und4ou8q12qivj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goodmorningvoca.std.app",
+            "certificate_hash": "cb1816d44b3366fb3a27fa496385e25939549d4a"
+          }
+        },
+        {
+          "client_id": "171234577934-3ql1gmjbj06377lrd8m0jofam8kvv2ha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApByYf1_mWFg3OUpuZxvPhaEvuAqbNDfI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171234577934-3ql1gmjbj06377lrd8m0jofam8kvv2ha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

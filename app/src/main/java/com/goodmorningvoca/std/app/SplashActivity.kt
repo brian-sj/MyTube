@@ -187,6 +187,9 @@ class SplashActivity : AppCompatActivity() {
                         //GlobalVariable.token = loginResult.token.token
                         GlobalVariable.user = loginResult.user
                         GlobalVariable.school_name = loginResult.school_name
+                        GlobalVariable.level = loginResult.level
+                        GlobalVariable.skill = loginResult.skill
+                        GlobalVariable.exp = loginResult.exp
                     }catch (e:Exception){
                         goToLoginActivity()
                     }

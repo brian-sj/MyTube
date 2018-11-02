@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso
  */
 class VideoDataAdapter(var homeFeed : HomeFeed) : RecyclerView.Adapter<VideoDataAdapter.VideoViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate( R.layout.item_video , parent , false )
+        val v = LayoutInflater.from(parent.context).inflate( R.layout.item_myword , parent , false )
         return VideoViewHolder(v)
     }
     override fun getItemCount(): Int {
@@ -51,8 +51,8 @@ class VideoDataAdapter(var homeFeed : HomeFeed) : RecyclerView.Adapter<VideoData
         init{
             textViewTitle = itemView.findViewById(R.id.tvTitle) as TextView
             textViewSub = itemView.findViewById(R.id.tvSub) as TextView
-             imageViewTitle = itemView.findViewById(R.id.imageViewTitle) as ImageView
-             imageViewProfile = itemView.findViewById(R.id.imageViewProfile) as ImageView
+             imageViewTitle = itemView.findViewById(R.id.iv_main) as ImageView
+             imageViewProfile = itemView.findViewById(R.id.iv_wordImage) as ImageView
             //textViewDesc = itemView.findViewById(R.id.tvDesc) as TextView
 
             //textViewDesc.text = item.numberOfViews.toString()

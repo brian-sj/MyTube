@@ -9,13 +9,19 @@
     <string name="action_go">GO</string>
 
     <string name="bottom_menu_1">일정</string>
-    <string name="bottom_menu_2">진도</string>
+    <string name="bottom_menu_2">학습</string>
     <string name="bottom_menu_3">성적</string>
     <string name="bottom_menu_4">단어장</string>
 
-    <string name="bottom_menu_study_1">설명가림</string>
-    <string name="bottom_menu_study_2">스펠링</string>
-    <string name="bottom_menu_study_3">뜻,추가설명</string>
+    <string name="bottom_menu_study_1_on">뜻가림</string>
+    <string name="bottom_menu_study_2_on">단어가림</string>
+    <string name="bottom_menu_study_3_on">설명가림</string>
+    <string name="bottom_menu_study_1_off">뜻보임</string>
+    <string name="bottom_menu_study_2_off">단어보임</string>
+    <string name="bottom_menu_study_3_off">설명보임</string>
+
+
+
     <string name="bottom_menu_study_4">단어저장</string>
 
 
@@ -51,7 +57,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_study">학습</string>
     <string name="action_test">시험</string>
-    <string name="title_activity_study">StudyActivity</string>
+    <string name="title_activity_study">학습하기</string>
+    <string name="save_myword">내단어저장</string>
 
 
 </resources>

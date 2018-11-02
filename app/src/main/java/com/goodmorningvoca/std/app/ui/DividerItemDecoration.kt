@@ -12,7 +12,7 @@ class DividerItemDecoration(context:Context ) : RecyclerView.ItemDecoration(){
 
     private var mDivider : Drawable? = null
     init{
-        mDivider = ContextCompat.getDrawable( context , R.drawable.line_divider )
+        mDivider = ContextCompat.getDrawable( context , R.drawable.style_line_divider )
     }
 
 

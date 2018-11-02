@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="2018-07-05"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_word_cnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="right"
+        android:paddingRight="12dp"
+        android:text="0"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+        app:layout_constraintStart_toEndOf="@+id/tv_date"
+        tools:text="30" />
+
+    <TextView
+        android:id="@+id/tv_my_score"
+        android:layout_width="49dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/label_success"
+        android:gravity="center"
+        android:text="100"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="text"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_type_a_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:text="연상"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_my_score"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+    <TextView
+        android:id="@+id/tv_type_b_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="스펠링"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_type_a_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type_a_desc" />
+
+    <TextView
+        android:id="@+id/tv_type_c_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:text="발음"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_type_a_desc"
+        app:layout_constraintTop_toTopOf="@+id/tv_type_a_desc" />
+
+    <TextView
+        android:id="@+id/tv_type_d_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="뜻"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_type_a_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type_b_desc" />
+
+    <TextView
+        android:id="@+id/tv_type_e_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="다의어"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_type_c_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type_c_desc"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="단어"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_word_cnt"
+        app:layout_constraintStart_toEndOf="@+id/tv_word_cnt" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:text="점"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_my_score"
+        app:layout_constraintStart_toEndOf="@+id/tv_my_score" />
+
+    <TextView
+        android:id="@+id/textViewf_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/label_danger"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="NEW"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toEndOf="@+id/tv_date"
+        app:layout_constraintTop_toTopOf="@+id/tv_date" />
+
+</android.support.constraint.ConstraintLayout>

@@ -13,6 +13,7 @@ import com.goodmorningvoca.std.app.WordCardActivity
 import com.goodmorningvoca.std.app.model.Data
 import com.goodmorningvoca.std.app.model.WordFeed
 import com.goodmorningvoca.std.app.model.Word
+import com.goodmorningvoca.std.app.ui.RoundedTransformation
 import com.squareup.picasso.Picasso
 
 /**
@@ -20,7 +21,7 @@ import com.squareup.picasso.Picasso
  */
 class WordDataAdapter(var homeFeed : WordFeed) : RecyclerView.Adapter<WordDataAdapter.VideoViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate( R.layout.item_video , parent , false )
+        val v = LayoutInflater.from(parent.context).inflate( R.layout.item_myword , parent , false )
         return VideoViewHolder(v)
     }
     override fun getItemCount(): Int {
@@ -30,12 +31,32 @@ class WordDataAdapter(var homeFeed : WordFeed) : RecyclerView.Adapter<WordDataAd
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val data = homeFeed.datas.get(position)
         holder.word = data
-        holder.bindItems( data  )
+        holder.bindItems( data , position+1  )
 
-        Picasso.with(holder.iview.context).load( Data.IMAGE_PATH + data.filename2).into( holder.imageViewTitle)
-        Picasso.with(holder.iview.context).load( Data.IMAGE_PATH + data.filename2).into( holder.imageViewProfile)
+        Picasso.with(holder.iview.context).load( Data.IMAGE_PATH + data.filename2)
+                .transform(RoundedTransformation(10, 4))
+                .into( holder.imageViewTitle)
+        //Picasso.with(holder.iview.context).load( Data.IMAGE_PATH + data.filename2).into( holder.imageViewProfile)
 
     }
+
+
+    fun setDatas( dataWrapper  : WordFeed  ){
+        this.homeFeed = dataWrapper
+    }
+
+    fun getItemAt( position : Int  ) : Word {
+        return homeFeed.datas.get( position ) as Word
+    }
+
+    fun removeItemAt(position : Int ) {
+        //if( holder!!.parent )
+        homeFeed.datas.removeAt( position )
+        notifyItemRemoved( position )
+        notifyItemRangeChanged( position , homeFeed.datas.size )
+
+    }
+
     class VideoViewHolder(itemView : View  , var word : Word? =null  ) : RecyclerView.ViewHolder(itemView) {
 
         companion object {
@@ -45,17 +66,18 @@ class WordDataAdapter(var homeFeed : WordFeed) : RecyclerView.Adapter<WordDataAd
         val iview = itemView
         val textViewTitle : TextView
         val textViewSub : TextView
+        val textViewSeq : TextView
         val imageViewTitle : ImageView
-        val imageViewProfile : ImageView
+        //val imageViewProfile : ImageView
         //val textViewDesc : TextView
         init{
             textViewTitle = itemView.findViewById(R.id.tvTitle) as TextView
             textViewSub = itemView.findViewById(R.id.tvSub) as TextView
-             imageViewTitle = itemView.findViewById(R.id.imageViewTitle) as ImageView
-             imageViewProfile = itemView.findViewById(R.id.imageViewProfile) as ImageView
+            textViewSeq = itemView.findViewById(R.id.tv_myword_seq) as TextView
+             imageViewTitle = itemView.findViewById(R.id.iv_main) as ImageView
+             //imageViewProfile = itemView.findViewById(R.id.iv_wordImage) as ImageView
             //textViewDesc = itemView.findViewById(R.id.tvDesc) as TextView
-
-            //textViewDesc.text = item.numberOfViews.toString()
+            /*
             iview.setOnClickListener( View.OnClickListener {
                 //val intent = Intent(iview.context , DetailActivity::class.java      )
                 /// WordCard Activity 로 날라간다
@@ -66,12 +88,12 @@ class WordDataAdapter(var homeFeed : WordFeed) : RecyclerView.Adapter<WordDataAd
                 //Toast.makeText( iview.context , "name ${item.name}" , Toast.LENGTH_LONG).show()
                 iview.context.startActivity(intent )
             })
-
-
+            */
         }
-        fun bindItems( item : Word){
-            textViewTitle.text = item.word
-            textViewSub.text = item.meaning
+        fun bindItems( item : Word , cnt : Int? =0 ){
+            textViewSeq.text   = cnt.toString()
+            textViewTitle.text =  item.word
+            textViewSub.text   =   item.meaning
         }
     }
 }
