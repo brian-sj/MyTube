@@ -33,7 +33,7 @@ class VideoDataAdapter(var homeFeed : HomeFeed) : RecyclerView.Adapter<VideoData
         holder.bindItems( video )
 
         Picasso.with(holder.iview.context).load( video.imageUrl).into( holder.imageViewTitle)
-        Picasso.with(holder.iview.context).load( video.channel.profileImageUrl).into( holder.imageViewProfile)
+        //Picasso.with(holder.iview.context).load( video.channel.profileImageUrl).into( holder.imageViewProfile)
 
     }
     class VideoViewHolder(itemView : View  , var video : Video? =null  ) : RecyclerView.ViewHolder(itemView) {
@@ -46,13 +46,13 @@ class VideoDataAdapter(var homeFeed : HomeFeed) : RecyclerView.Adapter<VideoData
         val textViewTitle : TextView
         val textViewSub : TextView
         val imageViewTitle : ImageView
-        val imageViewProfile : ImageView
+        //val imageViewProfile : ImageView
         //val textViewDesc : TextView
         init{
             textViewTitle = itemView.findViewById(R.id.tvTitle) as TextView
             textViewSub = itemView.findViewById(R.id.tvSub) as TextView
              imageViewTitle = itemView.findViewById(R.id.iv_main) as ImageView
-             imageViewProfile = itemView.findViewById(R.id.iv_wordImage) as ImageView
+             //imageViewProfile = itemView.findViewById(R.id.iv_wordImage) as ImageView
             //textViewDesc = itemView.findViewById(R.id.tvDesc) as TextView
 
             //textViewDesc.text = item.numberOfViews.toString()

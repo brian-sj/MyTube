@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GVoca</string>
+    <string name="app_name">굿모닝보카</string>
 
     <string name="action_settings">설정</string>
     <string name="action_logout">Logout</string>
@@ -20,11 +20,7 @@
     <string name="bottom_menu_study_2_off">단어보임</string>
     <string name="bottom_menu_study_3_off">설명보임</string>
 
-
-
     <string name="bottom_menu_study_4">단어저장</string>
-
-
 
     <string name="category_ele">초등</string>
     <string name="category_mid">중등</string>
@@ -37,7 +33,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_course_lesson">CourseLessonActivity</string>
-
 
     <string name="prompt_email">Email</string>
     <string name="prompt_id">ID</string>

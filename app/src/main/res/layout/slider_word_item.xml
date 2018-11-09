@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        >
 
     <TextView
         android:id="@+id/tv_study_slider_word"
@@ -22,9 +27,8 @@
     <ImageView
         android:id="@+id/slider_image"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="240dp"
         android:layout_marginTop="16dp"
-
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,12 +47,6 @@
         tools:text="meaning" />
 
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="366dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/slider_image">
 
         <org.sufficientlysecure.htmltextview.HtmlTextView
             android:id="@+id/tv_study_slider_content"
@@ -57,8 +55,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp" />
-    </ScrollView>
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/slider_image"
+            />
+
 
     <TextView
         android:id="@+id/tv_study_slider_seq"
@@ -107,5 +107,5 @@
         app:layout_constraintTop_toTopOf="@+id/tv_study_slider_seq"
         tools:text="ctg" />
 
-
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

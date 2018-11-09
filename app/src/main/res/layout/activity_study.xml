@@ -5,15 +5,13 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".StudyActivity">
-
 <android.support.v4.view.ViewPager
     android:id="@+id/study_pager"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="0dp">
 </android.support.v4.view.ViewPager>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +52,5 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/save_myword" />
-
-
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

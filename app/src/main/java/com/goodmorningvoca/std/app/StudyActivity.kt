@@ -1,29 +1,38 @@
 package com.goodmorningvoca.std.app
 
-import android.media.AudioAttributes
-import android.media.AudioManager
+import android.content.Intent
+
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.view.PagerAdapter
+import android.speech.RecognitionListener
+import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.Toast
 import com.goodmorningvoca.std.app.adapter.SliderAdapter
+
+/*
+import android.provider.Settings
 import com.goodmorningvoca.std.app.adapter.VideoDataAdapter
 import com.goodmorningvoca.std.app.adapter.VideoDetailAdapter
+import android.media.AudioAttributes
+import android.media.AudioManager
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.view.PagerAdapter
+import android.support.v7.widget.RecyclerView
+*/
 import com.goodmorningvoca.std.app.model.*
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_study.*
 import okhttp3.*
 import java.io.IOException
 import java.lang.Exception
+import java.util.*
 
-class StudyActivity : AppCompatActivity() {
+class StudyActivity : AppCompatActivity() , RecognitionListener {
 
 
     //lateinit var adapter : PagerAdapter
@@ -37,6 +46,9 @@ class StudyActivity : AppCompatActivity() {
 
 
     private val LOG_TAG = "STUDY_ACTIVITY"
+
+    val speech = SpeechRecognizer.createSpeechRecognizer( this )
+    val rintent = Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
     companion object {
         val Level_ID = "LEVEL_PARAM_ID"
@@ -106,11 +118,24 @@ class StudyActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 Log.d(LOG_TAG , "PAGE SELECTED" + position.toString() )
                 nowPage = position
+                val data = adapter.words.get(position)
                 playMp3( )
             }
         } )
         //level  = intent.getIntExtra(  StudyActivity.Level_ID ,-1)
         fetchJSON(  )
+
+
+        /////###### Speech Recognition
+
+        speech.setRecognitionListener( this  )
+        rintent.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL , RecognizerIntent.LANGUAGE_MODEL_FREE_FORM )
+        rintent.putExtra(RecognizerIntent.EXTRA_LANGUAGE , Locale.US.toString())
+        rintent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, Locale.US.toString());
+        rintent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE , true )
+
+        rintent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS , 3 )
+        speech.startListening( rintent )
     }
 
 
@@ -184,6 +209,8 @@ class StudyActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
+    /// Play Complete ==> run Recognition
     private fun playMp3(){
         val data = adapter.getWord( nowPage )
         val url = Data.MP3_PATH + data?.filename1
@@ -205,6 +232,68 @@ class StudyActivity : AppCompatActivity() {
 
         mediaPlayer?.setOnCompletionListener {
             Log.d(LOG_TAG ,"------")
+            speech.startListening( rintent )
         }
     }
+
+
+    override fun onBeginningOfSpeech() {
+        //
+    }
+
+    override fun onBufferReceived(buffer: ByteArray?) {
+        //
+    }
+
+    override fun onEndOfSpeech() {
+        //
+    }
+
+    override fun onError(error: Int) {
+        //
+        Log.d( LOG_TAG , "ERROR : "+ getErrorText(error)  )
+    }
+
+    override fun onEvent(eventType: Int, params: Bundle?) {
+        //
+    }
+
+    override fun onPartialResults(partialResults: Bundle?) {
+        //
+    }
+
+    override fun onReadyForSpeech(params: Bundle?) {
+        //
+        Log.d(LOG_TAG , "READY ")
+    }
+
+    override fun onResults(results: Bundle?) {
+        val matches = results?.getStringArrayList( SpeechRecognizer.RESULTS_RECOGNITION )
+        Log.d( LOG_TAG ,""+matches?.size + ":" )  // 3개가 나오는가?
+    }
+
+    override fun onRmsChanged(rmsdB: Float) {
+        //
+    }
+
+    fun getErrorText(errorCode: Int): String {
+        val message: String
+        when (errorCode) {
+            SpeechRecognizer.ERROR_AUDIO -> message = "Audio recording error"
+            SpeechRecognizer.ERROR_CLIENT -> message = "Client side error"
+            SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> message = "Insufficient permissions"
+            SpeechRecognizer.ERROR_NETWORK -> message = "Network error"
+            SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> message = "Network timeout"
+            SpeechRecognizer.ERROR_NO_MATCH -> message = "No match"
+            SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> message = "RecognitionService busy"
+            SpeechRecognizer.ERROR_SERVER -> message = "error from server"
+            SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> message = "No speech input"
+            else -> message = "Didn't understand, please try again."
+        }
+        return message
+    }
+
+    //endregion
 }
+
+
