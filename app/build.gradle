@@ -46,5 +46,5 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 
 
-    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+
 }
